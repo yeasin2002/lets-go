@@ -1,0 +1,63 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Go workspace file
+go.work
+
+# Go modules
+vendor/
+
+# Node modules (if any)
+node_modules/
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Coverage reports
+*.cover
+
+# Dependency directories
+vendor/
+
+# Build directories
+bin/
+build/
+
+# Go build artifacts
+*.o
+*.a
+*.gc
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+_testmain.go
+*.test
+
+# Test binary, result file, and coverage profile
+*.test
+*.prof
+*.out
+
+# Project local build configurations
+.env
+.env.*
+.envrc
+
+# MacOS specific files
+.DS_Store
