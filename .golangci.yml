@@ -1,0 +1,13 @@
+# .golangci.yml
+run:
+  tests: true
+linters:
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - gocyclo
+    - gofmt
+linters-settings:
+  gocyclo:
+    min-complexity: 10
