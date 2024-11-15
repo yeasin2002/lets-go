@@ -25,7 +25,9 @@ help:
 
 ## Run the application
 run:
-	go run main.go
+	# go run main.go
+	air
+
 
 ## Build the binary
 build: $(GO_FILES)

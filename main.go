@@ -34,9 +34,10 @@ func main() {
 // @Router /api/v1/greet [get]
 func greet(w http.ResponseWriter, r *http.Request) {
 	enc := json.NewEncoder(w)
-	err := enc.Encode(map[string]string{"message": "Hello, World!!!"})
+	err := enc.Encode(map[string]string{"message": "Hello, World!"})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
 }
