@@ -1,28 +1,42 @@
+// main.go
+
 package main
 
 import (
-	"fmt"
+	"encoding/json"
+	_ "explore/docs"
 	"log"
 	"net/http"
+
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-// homeHandler is a simple HTTP handler that responds with a welcome message.
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	if _, err := fmt.Fprintf(w, "Welcome to the Go HTTP API!"); err != nil {
-		http.Error(w, "Failed to write response", http.StatusInternalServerError)
-		log.Printf("Error writing response: %v", err)
-	}
+// @title Simple API
+// @version 1.0
+// @description This is a simple API.
+// @host localhost:8080
+// @BasePath /
+
+func main() {
+	http.HandleFunc("/", greet)
+	http.HandleFunc("/swagger/", httpSwagger.WrapHandler)
+
+	log.Println("Server started at http://localhost:8080/")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-// main function initializes the HTTP server and routes.
-func main() {
-	// Define routes
-	http.HandleFunc("/", homeHandler)
-
-	// Start the HTTP server
-	port := ":8080"
-	fmt.Printf("Server is running on http://localhost%s\n", port)
-	if err := http.ListenAndServe(port, nil); err != nil {
-		log.Fatalf("Server failed to start: %v", err)
+// greet returns a simple greeting message
+// @Summary Greet
+// @Description Respond with a greeting message
+// @Tags greet
+// @Produce json
+// @Success 200 {object} map[string]string
+// @Router /api/v1/greet [get]
+func greet(w http.ResponseWriter, r *http.Request) {
+	enc := json.NewEncoder(w)
+	err := enc.Encode(map[string]string{"message": "Hello, World!!!"})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 }
